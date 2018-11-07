@@ -1,7 +1,7 @@
 # ScissorsStonePaper
 sumali - Urs Sommerhalder
-Schere, Stein, Papier - Spiel mit C# für Schüler
-Erweitert mit Echse und Spock
+Schere, Stein, Papier - Spiel mit C# für Schüler.
+Erweitert mit Echse und Spock.
 
 ## Projektbeschrieb
 Dies ist eine kleine Applikation, die fertig Progmmiert werden kann.
@@ -56,3 +56,22 @@ Entstanden ist die Applikation für den Zukunftstag vom 08.11.2018.
 	- Papier (Paper)
 	- Echse (Lizad)
 	- Spock (Spock)
+
+## Was ist wo?
+### Fertige Appliaktion oder Musterlösung
+
+### Vorlage für den Schüler
+
+
+# Regeln
+Die Regeln für Schere, Stein, Papier, Echse und Spock lauten:
+- Papier bedeck Stein
+- Papier widerlegt Spock
+- Schere schneidet Papier
+- Schere köpft Echse
+- Stein schleift Schere
+- Stein zerqutscht Echse
+- Echse frisst Papier
+- Echse vergigtet Spock
+- Spock zertrümmert Schere
+- Spock verdampft Stein
