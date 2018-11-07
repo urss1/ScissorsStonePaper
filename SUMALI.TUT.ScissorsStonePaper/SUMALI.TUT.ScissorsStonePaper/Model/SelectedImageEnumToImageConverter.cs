@@ -36,7 +36,7 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
                     case SelectedImage.Stone:
                         imageName = "icon_stone";
                         break;
-                    case SelectedImage.Lizad:
+                    case SelectedImage.Lizard:
                         imageName = "icon_lizard";
                         break;
                     case SelectedImage.Spock:

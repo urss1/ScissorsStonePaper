@@ -10,10 +10,15 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
     {
 
         #region Attributes and Propertys
-
+        /// <summary>
+        /// Kontroller für die Auswertung und Berechnung des Gewinners
+        /// </summary>
         private EvaluateWinnerController evaluateWinnerController;
 
         private string humanPlayerName;
+        /// <summary>
+        /// Name des Spielers (also Du)
+        /// </summary>
         public string HumanPlayerName
         {
             get
@@ -31,6 +36,9 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         }
 
         private string computerPlayerName;
+        /// <summary>
+        /// Name des Computer-Spielers (also Dein Gegner)
+        /// </summary>
         public string ComputerPlayerName
         {
             get
@@ -48,6 +56,9 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         }
 
         private SelectedImage humanPlayerChoose;
+        /// <summary>
+        /// Gewähltes Symbol (Schere, Stein ...) des Spielers
+        /// </summary>
         public SelectedImage HumanPlayerChoose
         {
             get
@@ -65,6 +76,9 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         }
 
         private SelectedImage computerPlayerChoose;
+        /// <summary>
+        /// Gewähltes Symbol (Schere, Stein ...) des Computers
+        /// </summary>
         public SelectedImage ComputerPlayerChoose
         {
             get
@@ -83,6 +97,9 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
 
         #region Result/Statistic
         private int roundCounter = 0;
+        /// <summary>
+        /// Anzahl gespielte Runden (Rundenanzahl)
+        /// </summary>
         public int RoundCounter
         {
             get
@@ -100,6 +117,9 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         }
 
         private int humanPlayerWinsCounter = 0;
+        /// <summary>
+        /// Anzahl gewinne vom Spieler (Deine Gewinne)
+        /// </summary>
         public int HumanPlayerWinsCounter
         {
             get
@@ -117,6 +137,9 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         }
 
         private int computerPlayerWinsCounter = 0;
+        /// <summary>
+        /// Anzahl gewinne vom Computer
+        /// </summary>
         public int ComputerPlayerWinsCounter
         {
             get
@@ -158,6 +181,9 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
 
 
         private string showMessageText = String.Empty;
+        /// <summary>
+        /// Text für die Anzeige in der BOX Systemmeldungen
+        /// </summary>
         public string ShowMessageText
         {
             get
@@ -204,6 +230,8 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
             // Zufallsgenerator für die Auswahl vom Computer
             ComputerPlayerChoose = (SelectedImage)new Random().Next(0, 5);
 
+            // ToDo: Ermittle den Gewinner
+            // Tipp: Verwende ein Switch-Case
             switch (evaluateWinnerController.EvaluateHumanWins(HumanPlayerChoose, ComputerPlayerChoose))
             {
                 case EvaluatedWinner.HumanPlayer:
@@ -221,15 +249,24 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         #endregion
 
         #region Set Winner
+        /// <summary>
+        /// Setzt den Spieler als Gewinner (also Du gewinnst)
+        /// </summary>
         private void SetHumanPlayerAsWinner()
         {
+            // ToDo : Infos ausgeben (Tipp nutze die Methode ShowWinnerInfo)
+            // Zähle die "Counters" hoch (Gewinner und Rundenanzahl)
             ShowWinnerInfo(HumanPlayerName);
             RoundCounter++;
             HumanPlayerWinsCounter++;
         }
 
+        /// <summary>
+        /// Setzt den Computer als Gewinner (Dein Gegner hat gewonnen)
+        /// </summary>
         private void SetComputerPlayerAsWinner()
         {
+            // ToDo: Infos ausgeben und Zähler hochzählen
             ShowWinnerInfo(ComputerPlayerName);
             RoundCounter++;
             ComputerPlayerWinsCounter++;
@@ -255,13 +292,22 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         }
         #endregion
 
+        #region Reset Images
+        /// <summary>
+        /// Setzt die Bilder zurück. Es werden keine Bilder mehr angezeigt.
+        /// Dies wird für ein neues Spiel verwendet.
+        /// </summary>
         private void ResetImages()
         {
             HumanPlayerChoose = SelectedImage.none;
             ComputerPlayerChoose = SelectedImage.none;
-        }
+        } 
+        #endregion
 
         #region Show Messages
+        /// <summary>
+        /// 
+        /// </summary>
         private void ShowNewGameInfo()
         {
             ShowMessage("Neues Spiel wurde gestartet.");
@@ -286,6 +332,10 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         #endregion
 
         #region Property Changed Handler
+        /// <summary>
+        /// Benachrichtig die Oberfläche, wenn es neue oder geänderte Werte hat um diese wieder anzuzeigen.
+        /// Dieser Teil sollte nicht geändert werden...
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyName = null)

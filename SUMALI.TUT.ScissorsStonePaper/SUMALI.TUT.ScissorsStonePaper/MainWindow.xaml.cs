@@ -9,6 +9,9 @@ using AppResources = SUMALI.TUT.ScissorsStonePaper.Properties.Resources;
 
 namespace SUMALI.TUT.ScissorsStonePaper
 {
+    /// <summary>
+    /// Klasse für das Fenster (Window).
+    /// </summary>
     public partial class MainWindow : Window
     {
         private MainWindowModel mainWindowModel;
@@ -64,6 +67,7 @@ namespace SUMALI.TUT.ScissorsStonePaper
 
         #endregion Get Assembly-Version
 
+        #region Events for Images and Buttons
         private void CutImage_Click(object sender, MouseButtonEventArgs e)
         {
             mainWindowModel.Play(Enums.SelectedImage.Scissors);
@@ -81,7 +85,7 @@ namespace SUMALI.TUT.ScissorsStonePaper
 
         private void LizardImage_Click(object sender, MouseButtonEventArgs e)
         {
-            mainWindowModel.Play(Enums.SelectedImage.Lizad);
+            mainWindowModel.Play(Enums.SelectedImage.Lizard);
         }
 
         private void SpockImage_Click(object sender, MouseButtonEventArgs e)
@@ -93,6 +97,7 @@ namespace SUMALI.TUT.ScissorsStonePaper
         {
             mainWindowModel.NewGame();
         }
+        #endregion
 
         #region ScrollViewer Event - Scroll to end when Content Changed
         private void ContentScrollViewer_Changed(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -102,6 +107,5 @@ namespace SUMALI.TUT.ScissorsStonePaper
 
         #endregion
 
-        
     }
 }

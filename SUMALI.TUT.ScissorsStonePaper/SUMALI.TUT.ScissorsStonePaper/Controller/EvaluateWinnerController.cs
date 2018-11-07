@@ -14,23 +14,24 @@ namespace SUMALI.TUT.ScissorsStonePaper.Controller
     /// </summary>
     internal class EvaluateWinnerController
     {
+        // Liste für die Auswertung wer schlägt wen
         private Dictionary<SelectedImage, List<SelectedImage>> whoWinsAgainstWho = new Dictionary<SelectedImage, List<SelectedImage>>();
 
         internal EvaluateWinnerController()
         {
-            // ToDo : Hier kommt die Definition wer schlägt wen
+            // ToDo : Hier die Liste mit wer schlägt wen eingragen...
             // Papier bedeck Stein
             // Papier widerlegt Spock
             whoWinsAgainstWho.Add(SelectedImage.Paper, new List<SelectedImage>() { SelectedImage.Stone, SelectedImage.Spock });
             // Schere schneidet Papier
             // Schere köpft Echse
-            whoWinsAgainstWho.Add(SelectedImage.Scissors, new List<SelectedImage>() { SelectedImage.Paper, SelectedImage.Lizad });
+            whoWinsAgainstWho.Add(SelectedImage.Scissors, new List<SelectedImage>() { SelectedImage.Paper, SelectedImage.Lizard });
             // Stein schleift Schere
             // Stein zerqutscht Echse
-            whoWinsAgainstWho.Add(SelectedImage.Stone, new List<SelectedImage>() { SelectedImage.Scissors, SelectedImage.Lizad });
+            whoWinsAgainstWho.Add(SelectedImage.Stone, new List<SelectedImage>() { SelectedImage.Scissors, SelectedImage.Lizard });
             // Echse frisst Papier
             // Echse vergigtet Spock
-            whoWinsAgainstWho.Add(SelectedImage.Lizad, new List<SelectedImage>() { SelectedImage.Paper, SelectedImage.Spock });
+            whoWinsAgainstWho.Add(SelectedImage.Lizard, new List<SelectedImage>() { SelectedImage.Paper, SelectedImage.Spock });
             // Spock zertrümmert Schere
             // Spock verdampft Stein
             whoWinsAgainstWho.Add(SelectedImage.Spock, new List<SelectedImage>() { SelectedImage.Scissors, SelectedImage.Stone });

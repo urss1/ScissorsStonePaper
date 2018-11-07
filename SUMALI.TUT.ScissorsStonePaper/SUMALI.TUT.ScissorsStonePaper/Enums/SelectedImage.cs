@@ -27,7 +27,7 @@ namespace SUMALI.TUT.ScissorsStonePaper.Enums
         /// <summary>
         /// Echse
         /// </summary>
-        Lizad,
+        Lizard,
         /// <summary>
         /// Spock
         /// </summary>
