@@ -1,7 +1,9 @@
 # ScissorsStonePaper
 sumali - Urs Sommerhalder
 Schere, Stein, Papier - Spiel mit C# für Schüler.
+
 Erweitert mit Echse und Spock.
+
 
 ## Projektbeschrieb
 Dies ist eine kleine Applikation, die fertig Progmmiert werden kann.
@@ -26,7 +28,6 @@ Entstanden ist die Applikation für den Zukunftstag vom 08.11.2018.
 - [ ] Gewinner ermitteln:
 	- Klasse: EvaluateWinnerController
 	- Methode EvaluateHumanWins ergänzen.
-- [ ] 
 
 ## Möglichkeit zur Erweiterung
 ### Ausgabe beim Auswerten des Gewinners mit einem Satz
@@ -46,7 +47,7 @@ Entstanden ist die Applikation für den Zukunftstag vom 08.11.2018.
 ### Oberfläche
 - Die Applikation ist mit WPF aufgebaut.
 - Im MainWindowModel sind die Methoden für das Benachrichtigen der Oberfläche (OnPropertyChande) impelementiert.
-- 
+
 ### EvaluatedWinner
 - Hier ist die Liste mit den möglichen Gewinner.
 ### SelectedImage
