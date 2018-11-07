@@ -1,4 +1,5 @@
 ﻿using SUMALI.TUT.ScissorsStonePaper;
+using SUMALI.TUT.ScissorsStonePaper.Controller;
 using SUMALI.TUT.ScissorsStonePaper.Model;
 using System;
 using System.Diagnostics;
@@ -11,6 +12,7 @@ namespace SUMALI.TUT.ScissorsStonePaper
     public partial class MainWindow : Window
     {
         private MainWindowModel mainWindowModel;
+        
         #region Constructor
 
         public MainWindow()
@@ -61,5 +63,45 @@ namespace SUMALI.TUT.ScissorsStonePaper
         }
 
         #endregion Get Assembly-Version
+
+        private void CutImage_Click(object sender, MouseButtonEventArgs e)
+        {
+            mainWindowModel.Play(Enums.SelectedImage.Scissors);
+        }
+
+        private void StoneImage_Click(object sender, MouseButtonEventArgs e)
+        {
+            mainWindowModel.Play(Enums.SelectedImage.Stone);
+        }
+
+        private void PaperImage_Click(object sender, MouseButtonEventArgs e)
+        {
+            mainWindowModel.Play(Enums.SelectedImage.Paper);
+        }
+
+        private void LizardImage_Click(object sender, MouseButtonEventArgs e)
+        {
+            mainWindowModel.Play(Enums.SelectedImage.Lizad);
+        }
+
+        private void SpockImage_Click(object sender, MouseButtonEventArgs e)
+        {
+            mainWindowModel.Play(Enums.SelectedImage.Spock);
+        }
+
+        private void StartNewGame_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindowModel.NewGame();
+        }
+
+        #region ScrollViewer Event - Scroll to end when Content Changed
+        private void ContentScrollViewer_Changed(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            LogMessagesScrollViewer.ScrollToEnd();
+        }
+
+        #endregion
+
+        
     }
 }

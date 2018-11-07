@@ -64,7 +64,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\RoundResult.cs" />
+    <Compile Include="Controller\EvaluateWinnerController.cs" />
+    <Compile Include="Enums\EvaluatedWinner.cs" />
+    <Compile Include="Enums\SelectedImage.cs" />
+    <Compile Include="Model\BoolReverseConverter.cs" />
+    <Compile Include="Model\SelectedImageEnumToImageConverter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,7 +126,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enums\" />
+    <Resource Include="Includes\icon_none.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Includes\icon_cut.png" />
@@ -131,6 +135,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Includes\swIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Includes\icon_lizard.png" />
+    <Resource Include="Includes\icon_spock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

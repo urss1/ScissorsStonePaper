@@ -5,6 +5,7 @@
         xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:p="clr-namespace:SUMALI.TUT.ScissorsStonePaper.Properties"
+        xmlns:converter="clr-namespace:SUMALI.TUT.ScissorsStonePaper.Model"
         x:Name="sumMainWindow"
         Title="sumali - Schere, Stein, Papier"
         Width="1280"
@@ -18,6 +19,10 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         mc:Ignorable="d">
+    <Window.Resources>
+        <converter:BoolReverseConverter x:Key="BoolReverseConverter" />
+        <converter:SelectedImageEnumToImageConverter x:Key="SelectedImageEnumToImageConverter"/>
+    </Window.Resources>
     <Grid x:Name="MainWindowGrid" Margin="0,0,0,1">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -113,10 +118,58 @@
                 <Border.BorderBrush>
                     <SolidColorBrush Color="{DynamicResource gbxMainWindowStyleBorderColor}"/>
                 </Border.BorderBrush>
+                <Grid x:Name="ResultGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="300"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox x:Name="StatisticGoupBox" Header="Spiel Statistik:">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label x:Name="RoundCountTitleLabel" Content="gespielte Rundenanzahl:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+                            <Label x:Name="RoundCountLabel" Content="{Binding RoundCounter}" Grid.Column="2" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold">
+                                <Label.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource gbxDetailsTitleLabelColor}"/>
+                                </Label.Foreground>
+                            </Label>
+                            <Label x:Name="ResultHumanPlayerNameLabel" Content="{Binding HumanPlayerName}" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label x:Name="ResultComputerPlayerNameLabel" Content="{Binding ComputerPlayerName}" Grid.Column="2" Grid.Row="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <Label x:Name="ResultHumanPlayerCountLabel" Content="{Binding HumanPlayerWinsCounter}" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold">
+                                <Label.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource gbxDetailsTitleLabelColor}"/>
+                                </Label.Foreground>
+                            </Label>
+                            <Label x:Name="ResultComputerPlayerCountLabel" Content="{Binding ComputerPlayerWinsCounter}" Grid.Column="2" Grid.Row="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold">
+                                <Label.Foreground>
+                                    <SolidColorBrush Color="{DynamicResource gbxDetailsTitleLabelColor}"/>
+                                </Label.Foreground>
+                            </Label>
+                            <Label x:Name="ResultDoublePointLabel" Content=":" Grid.Row="4" Grid.Column="1"/>
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox x:Name="SystemMessagesGroupBox" Header="Systemmeldungen:" Grid.Row="1">
+                        <ScrollViewer x:Name="LogMessagesScrollViewer" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" CanContentScroll="True">
+                            <TextBox x:Name="ShowMessageTextBox" TextWrapping="Wrap" Text="{Binding ShowMessageText}" BorderThickness="0" VerticalScrollBarVisibility="Disabled" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True" TextChanged="ContentScrollViewer_Changed"/>
+                        </ScrollViewer>
+                    </GroupBox>
+                </Grid>
             </Border>
             <Grid x:Name="HumanPlayerGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -129,23 +182,26 @@
                     <RowDefinition Height="64"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Image x:Name="CutImage" Grid.Row="2" Source="Includes/icon_cut.png"/>
-                <Image x:Name="StoneImage" Grid.Row="4" Source="Includes/icon_stone.png"/>
-                <Image x:Name="PaperImage" Grid.Row="6" Source="Includes/icon_paper.png"/>
-                <Image Grid.Column="1" Grid.Row="2" Grid.RowSpan="6" Source="Includes/icon_paper.png" Width="128" Height="128"/>
-                <Label x:Name="HumanPlayerNameTitelLabel" Content="Spieler:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center">
+                <Image x:Name="CutImage" Grid.Row="2" Source="Includes/icon_cut.png" MouseLeftButtonDown="CutImage_Click" IsEnabled="{Binding IsNewGame}"/>
+                <Image x:Name="StoneImage" Grid.Row="4" Source="Includes/icon_stone.png" MouseLeftButtonDown="StoneImage_Click" IsEnabled="{Binding IsNewGame}"/>
+                <Image x:Name="PaperImage" Grid.Row="6" Source="Includes/icon_paper.png" MouseLeftButtonDown="PaperImage_Click" IsEnabled="{Binding IsNewGame}"/>
+                <Image x:Name="SpockImage" Grid.Row="2" Source="Includes/icon_spock.png" MouseLeftButtonDown="SpockImage_Click" IsEnabled="{Binding IsNewGame}" Grid.Column="1"/>
+                <Image x:Name="HumanPlayerChooseImage" Grid.Column="2" Grid.Row="2" Grid.RowSpan="5" Source="{Binding HumanPlayerChoose, Converter={StaticResource SelectedImageEnumToImageConverter}}" Width="128" Height="128"/>
+                <Label x:Name="HumanPlayerNameTitelLabel" Content="Spieler:" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,17.02">
                     <Label.Foreground>
                         <SolidColorBrush Color="{DynamicResource gbxDetailsHintLabelColor}"/>
                     </Label.Foreground>
                 </Label>
-                <TextBox x:Name="HumanPlayerNameTextBox" Grid.Column="1" Height="30" TextWrapping="Wrap" Text="{Binding HumanPlayerName, Mode=TwoWay}" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,0,0" FontWeight="Bold" FontSize="14">
+                <TextBox x:Name="HumanPlayerNameTextBox" Grid.Column="1" Height="30" TextWrapping="Wrap" Text="{Binding HumanPlayerName, Mode=TwoWay}" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,15,0,15" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2">
                     <TextBox.Foreground>
                         <SolidColorBrush Color="{DynamicResource gbxMainWindowStyleBorderColor}"/>
                     </TextBox.Foreground>
                 </TextBox>
+                <Image x:Name="LizardImage" Grid.Row="4" Source="Includes/icon_lizard.png" MouseLeftButtonDown="LizardImage_Click" IsEnabled="{Binding IsNewGame}" Grid.Column="1"/>
             </Grid>
             <Grid x:Name="ComputerPlayerGrid" Grid.Row="2">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -153,17 +209,19 @@
                     <RowDefinition/>
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="ComputerPlayerNameTitelLabel" Content="Computer:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Label x:Name="ComputerPlayerNameTitelLabel" Content="Computer:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,17.02">
                     <Label.Foreground>
                         <SolidColorBrush Color="{DynamicResource gbxDetailsHintLabelColor}"/>
                     </Label.Foreground>
                 </Label>
-                <Label x:Name="ComputerPlayerNameLabel" Content="{Binding ComputerPlayerName}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0" FontWeight="Bold" FontSize="16" Height="30">
+                <Label x:Name="ComputerPlayerNameLabel" Content="{Binding ComputerPlayerName}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,15,0,15" FontWeight="Bold" FontSize="16" Height="30" Grid.ColumnSpan="2">
                     <Label.Foreground>
                         <SolidColorBrush Color="{DynamicResource gbxMainWindowStyleBorderColor}"/>
                     </Label.Foreground>
                 </Label>
+                <Image x:Name="ComputerPlayerChooseImage" Grid.Column="2" Source="{Binding ComputerPlayerChoose, Converter={StaticResource SelectedImageEnumToImageConverter}}" Width="128" Height="128"/>
             </Grid>
+            <Button x:Name="StartNewGameButton" Content="neues Spiel..." HorizontalAlignment="Center" Grid.Row="1" Width="150" VerticalAlignment="Center" Height="35" Click="StartNewGame_Click" IsEnabled="{Binding IsNewGame, Converter={StaticResource BoolReverseConverter}}"/>
         </Grid>
     </Grid>
 </Window>
