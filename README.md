@@ -60,9 +60,9 @@ Entstanden ist die Applikation für den Zukunftstag vom 08.11.2018.
 
 ## Was ist wo?
 ### Fertige Appliaktion oder Musterlösung
-
+https://github.com/urss1/ScissorsStonePaper/tree/master
 ### Vorlage für den Schüler
-
+https://github.com/urss1/ScissorsStonePaper/tree/templateToDo
 
 # Regeln
 Die Regeln für Schere, Stein, Papier, Echse und Spock lauten:
