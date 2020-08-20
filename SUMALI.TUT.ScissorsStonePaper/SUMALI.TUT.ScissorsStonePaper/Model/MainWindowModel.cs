@@ -224,26 +224,12 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         {
             // ToDo: Setzte neues Spiel auf den korrekten Wert für die Anzeige
             // ToDo: Setzte die Auswahl für den Spieler
-            IsNewGame = false;
-            HumanPlayerChoose = selectedImageHumanPlayer;
 
             // Zufallsgenerator für die Auswahl vom Computer
             ComputerPlayerChoose = (SelectedImage)new Random().Next(0, 5);
 
             // ToDo: Ermittle den Gewinner
-            // Tipp: Verwende ein Switch-Case
-            switch (evaluateWinnerController.EvaluateHumanWins(HumanPlayerChoose, ComputerPlayerChoose))
-            {
-                case EvaluatedWinner.HumanPlayer:
-                    SetHumanPlayerAsWinner();
-                    break;
-                case EvaluatedWinner.ComputerPlayer:
-                    SetComputerPlayerAsWinner();
-                    break;
-                default:
-                    SetNoneAsWinner();
-                    break;
-            }           
+            // Tipp: Verwende ein Switch-Case         
         }
 
         #endregion
@@ -256,9 +242,6 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         {
             // ToDo : Infos ausgeben (Tipp nutze die Methode ShowWinnerInfo)
             // Zähle die "Counters" hoch (Gewinner und Rundenanzahl)
-            ShowWinnerInfo(HumanPlayerName);
-            RoundCounter++;
-            HumanPlayerWinsCounter++;
         }
 
         /// <summary>
@@ -267,9 +250,6 @@ namespace SUMALI.TUT.ScissorsStonePaper.Model
         private void SetComputerPlayerAsWinner()
         {
             // ToDo: Infos ausgeben und Zähler hochzählen
-            ShowWinnerInfo(ComputerPlayerName);
-            RoundCounter++;
-            ComputerPlayerWinsCounter++;
         }
 
         private void SetNoneAsWinner()
