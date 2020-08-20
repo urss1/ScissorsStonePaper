@@ -43,6 +43,13 @@ Entstanden ist die Applikation für den Zukunftstag vom 08.11.2018.
 	- [ ] Der Rückgabewert muss allenfalls überdenckt werden
 	- [ ] Die Auswertung muss neu auch den Satz für die Rückgabe bestimmen
 
+### Anzeige beim Spielen von Bilder
+- Zeige 4 Zufällige Bilder an (für den Spiler und den Computer dasselbe)
+- Das 5. Bild ist das Resultat:
+	- Spieler: gewähltes Bild
+	- Computer: zufälliges Bild
+- [ ] Erweitere die Methode "Play" (MainWindowModel)
+
 ## Hinweise
 ### Oberfläche
 - Die Applikation ist mit WPF aufgebaut.
@@ -50,6 +57,7 @@ Entstanden ist die Applikation für den Zukunftstag vom 08.11.2018.
 
 ### EvaluatedWinner
 - Hier ist die Liste mit den möglichen Gewinner.
+
 ### SelectedImage
 - Hier ist die Liste mit den möglichen Auswahlen:
 	- Schere (Scissors)
@@ -60,11 +68,12 @@ Entstanden ist die Applikation für den Zukunftstag vom 08.11.2018.
 
 ## Was ist wo?
 ### Fertige Appliaktion oder Musterlösung
-https://github.com/urss1/ScissorsStonePaper/tree/master
-### Vorlage für den Schüler
-https://github.com/urss1/ScissorsStonePaper/tree/templateToDo
+- im Verzeichnis "Muster-Lösung"
 
-# Regeln
+### Vorlage zum Lösen
+- im Verzeichnis "SUMALI.TUT.ScissorsStonePaper"
+
+## Regeln
 Die Regeln für Schere, Stein, Papier, Echse und Spock lauten:
 - Papier bedeck Stein
 - Papier widerlegt Spock
